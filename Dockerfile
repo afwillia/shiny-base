@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:focal
 
 RUN apt-get -y update && apt-get -y upgrade
 # The following is necessary to avoid an interactive prompt when installing r-base
