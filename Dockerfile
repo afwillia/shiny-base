@@ -9,7 +9,7 @@ RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo p
 
 # cmake is needed to install some packages
 # Add libxml and libglpk for DCA dashboard
-RUN apt-get install -y cmake libxml2 libxml2-dev libglpk-dev git vim
+RUN apt-get install -y cmake libxml2 libxml2-dev libglpk-dev git vim libicu-dev
 
 RUN Rscript -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
 RUN apt-get install -y gdebi-core wget
