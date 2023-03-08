@@ -8,7 +8,7 @@ RUN apt-get install -y r-base r-base-dev
 RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo python3-venv
 
 # cmake is needed to install some packages
-RUN apt-get install -y cmake
+RUN apt-get install -y cmake libxml2 libglpk-dev libicu-dev libicu66
 
 RUN Rscript -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
 RUN apt-get install -y gdebi-core wget
