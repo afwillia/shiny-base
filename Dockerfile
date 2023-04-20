@@ -1,4 +1,4 @@
-FROM ubuntu:kinetic
+FROM ubuntu:lunar
 
 RUN apt-get -y update && apt-get -y upgrade
 # The following is necessary to avoid an interactive prompt when installing r-base
@@ -9,10 +9,6 @@ RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo p
 
 # cmake is needed to install some packages
 RUN apt-get install -y cmake
-
-# Remove existing nodejs then update
-RUN sudo apt-get purge --auto-remove nodejs
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && apt-get install -y nodejs
 
 RUN Rscript -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
 RUN apt-get install -y gdebi-core wget
