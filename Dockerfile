@@ -10,6 +10,9 @@ RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo p
 # cmake is needed to install some packages
 RUN apt-get install -y cmake
 
+# Install nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && apt-get install -y nodejs
+
 RUN Rscript -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
 RUN apt-get install -y gdebi-core wget
 RUN wget https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.19.995-amd64.deb
