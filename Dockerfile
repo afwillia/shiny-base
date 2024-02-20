@@ -42,7 +42,7 @@ USER shiny
 
 # Send application logs to stderr
 ENV SHINY_LOG_STDERR=1
-ENV SHINY_LOG_LEVEL=TRACE
+ENV SHINY_LOG_LEVEL=INFO
 
 # start up the server
 CMD ["./startup.sh"]
