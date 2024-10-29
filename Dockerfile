@@ -8,14 +8,11 @@ RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 # https://cran.r-project.org/bin/linux/ubuntu/#install-r
 RUN apt-get install -y --no-install-recommends software-properties-common dirmngr
 RUN add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 RUN apt-get install -y --no-install-recommends r-base
-RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo python3-venv
-
-# cmake is needed to install some packages
-RUN apt-get install -y cmake
+RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo python3-venv cmake gdebi-core wget
 
 RUN Rscript -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
-RUN apt-get install -y gdebi-core wget
 #RUN wget https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-1.5.20.1002-amd64.deb
 RUN wget https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubuntu-18.04/x86_64/shiny-server-1.5.21.1007-amd64.deb
 RUN gdebi --n shiny-server-1.5.21.1007-amd64.deb
