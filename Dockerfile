@@ -1,10 +1,14 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 RUN apt-get -y update && apt-get -y upgrade
 # The following is necessary to avoid an interactive prompt when installing r-base
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
 # instructions here: https://www.rstudio.com/products/shiny/download-server/ubuntu/
-RUN apt-get install -y r-base r-base-dev
+# additional instructions to install R 4.4 on ubuntu noble
+# https://cran.r-project.org/bin/linux/ubuntu/#install-r
+RUN apt install --no-install-recommends software-properties-common dirmngr
+RUN add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+RUN apt install --no-install-recommends r-base
 RUN apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev jq pip sudo python3-venv
 
 # cmake is needed to install some packages
